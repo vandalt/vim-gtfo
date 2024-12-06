@@ -26,6 +26,8 @@ OPTIONS                                                         *gtfo-options*
 >
         let g:gtfo#terminals = { 'mac': 'iterm' }
 <
+*   `g:gtfo#kitty_integration` Optional flag to enable or disable kitty
+    integration. Defaults to 1.
 
 --------------------------------------------------------------------------------
 PLATFORM SUPPORT                                       *gtfo-platform_support*

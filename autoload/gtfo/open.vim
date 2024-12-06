@@ -30,6 +30,8 @@ func! s:init() abort
   let g:gtfo#terminals = extend(get(g:, "gtfo#terminals", {}),
         \ { 'win' : '', 'mac' : '', 'unix': '' }, 'keep')
 
+  let g:gtfo#kitty_integration = get(g:, "gtfo#kitty_integration", 1)
+
   if s:iswin
     let s:termpath = s:empty(g:gtfo#terminals.win) ? s:find_cygwin_bash() : g:gtfo#terminals.win
   elseif s:ismac
@@ -143,7 +145,7 @@ func! gtfo#open#term(dir, cmd) abort "{{{
     else
       silent call system("tmux split-window -h -c '" . l:dir . "'")
     endif
-  elseif s:iskitty
+  elseif s:iskitty && g:gtfo#kitty_integration
     let l:cwd = s:iswin ? shellescape(l:dir, 1) : "'" . l:dir .  "'"
     silent call system("kitty @ --to=$KITTY_LISTEN_ON new-window --cwd=" . l:cwd)
   elseif s:iswezterm
